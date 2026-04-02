@@ -59,28 +59,28 @@ body { background-color: var(--bg-light); font-family: 'Segoe UI', sans-serif; c
 /* FILTROS E SUPORTE DE TOQUE PARA SAFARI */
 .filter-wrapper-header {
   display: flex; justify-content: space-between; align-items: flex-end; 
-  gap: 15px; margin-bottom: 8px; padding: 0 15px;
+  gap: 15px; margin-bottom: 12px; padding: 0 15px;
 }
 .status-filters {
-  flex: 1; min-width: 0; display: flex; gap: 8px; overflow-x: auto; 
+  flex: 1; min-width: 0; display: flex; gap: 16px; overflow-x: auto; 
   -webkit-overflow-scrolling: touch; scrollbar-width: none;
-  border-bottom: 1px solid #e2e8f0; padding-bottom: 0;
+  border-bottom: 2px solid #e2e8f0; padding-bottom: 0;
 }
 .status-filters::-webkit-scrollbar {
   display: none;
 }
 .filter-btn {
-  background: transparent; border: none; padding: 10px 12px;
-  font-size: 0.8rem; font-weight: 800; color: #1e293b; cursor: pointer; text-transform: uppercase; letter-spacing: 0.03em;
-  transition: color 0.2s ease; white-space: nowrap; box-shadow: none;
-  flex-shrink: 0; position: relative;
+  background: transparent !important; border: none !important; padding: 8px 6px;
+  font-size: 0.85rem; font-weight: 800; color: #1e293b !important; cursor: pointer; text-transform: uppercase; letter-spacing: 0.03em;
+  transition: color 0.2s ease; white-space: nowrap; box-shadow: none !important;
+  flex-shrink: 0; position: relative; margin-bottom: -2px; border-radius: 0 !important;
 }
-.filter-btn:hover { color: var(--secondary); }
+.filter-btn:hover { color: var(--secondary) !important; }
 .filter-btn.active { 
-  background: transparent; color: var(--primary); border: none; box-shadow: none; 
+  color: var(--primary) !important; 
 }
 .filter-btn.active::after {
-  content: ''; position: absolute; bottom: -1px; left: 0; right: 0; 
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; 
   height: 3px; background-color: var(--primary); border-radius: 3px 3px 0 0;
 }
 
@@ -178,8 +178,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .header-title { font-size: 1rem; }
   .header-date-group { gap: 8px; margin-left: 4px; }
   #txtDataAtual, .week-badge { font-size: 0.78rem; }
-  .filter-wrapper-header { flex-direction: column; align-items: stretch; gap: 8px; margin-bottom: 12px; padding: 0 14px; }
-  .table-scroll-label { text-align: right; padding-bottom: 0; margin: 0; font-size: 0.75rem; }
+  
+  /* Cabeçalho da tabela corrigido e alinhado no mobile */
+  .filter-wrapper-header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 12px; padding: 0 14px; }
+  .table-scroll-label { text-align: left; padding-bottom: 0; margin: 0; font-size: 0.75rem; width: 100%; }
+  
   .modal-xl { max-width: 98vw; }
   #modalObra .modal-body { padding: 1rem; }
   #modalObra .modal-header { align-items: flex-start; }
@@ -198,22 +201,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 @media (max-width: 576px) {
-  /* Grelha de Estatísticas 2x2 para não amontoar em mobile */
+  /* Grelha de Estatísticas 2x2: Ícone e Texto Perfeitamente Alinhados Lado a Lado */
   .stat-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
     padding: 10px 14px;
   }
   .stat-card {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 12px;
-    gap: 8px;
+    flex-direction: row; /* Força os ícones para o lado do texto em vez de ficarem por cima */
+    align-items: center;
+    padding: 12px 10px;
+    gap: 10px;
   }
-  .stat-icon { width: 34px; height: 34px; font-size: 1.05rem; border-radius: 8px; margin-bottom: 2px; }
-  .stat-content { width: 100%; display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
-  .stat-label { font-size: 0.62rem; letter-spacing: 0.02em; line-height: 1.2; text-align: left; }
-  .stat-val { font-size: 1.15rem; line-height: 1.1; word-wrap: break-word; overflow-wrap: break-word; text-align: left; margin: 0; }
+  .stat-icon { width: 36px; height: 36px; font-size: 1.1rem; border-radius: 8px; flex-shrink: 0; margin: 0; }
+  .stat-content { width: auto; display: flex; flex-direction: column; gap: 2px; align-items: flex-start; justify-content: center; }
+  .stat-label { font-size: 0.65rem; letter-spacing: 0.02em; line-height: 1.1; text-align: left; margin: 0; }
+  .stat-val { font-size: 1.1rem; line-height: 1; word-wrap: normal; overflow-wrap: normal; text-align: left; margin: 0; }
 
   #modalObra .modal-dialog { margin: 0.4rem; }
   #modalObra .modal-content { border-radius: 12px; }
