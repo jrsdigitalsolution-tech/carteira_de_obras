@@ -8,17 +8,27 @@
 html { scroll-behavior: smooth; }
 body { background-color: var(--bg-light); font-family: 'Segoe UI', sans-serif; color: #1e293b; margin: 0; overflow-x: hidden; padding-bottom: env(safe-area-inset-bottom, 20px); }
 
+/* CABEÇALHO ATUALIZADO */
 .navbar-custom { 
   background: white; padding: 10px 20px; border-bottom: 1px solid #e2e8f0; 
   display: flex; justify-content: space-between; align-items: center; 
-  position: sticky; top: 0; z-index: 1000; 
+  position: sticky; top: 0; z-index: 1000; flex-wrap: nowrap; /* Garante que os ícones ficam à direita */
 }
-.header-brand { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
-.header-date-group { display: flex; align-items: baseline; gap: 14px; margin-left: 8px; }
-.logo-img { max-height: 50px; }
-.header-title { font-size: 1.2rem; font-weight: 800; color: var(--primary); margin: 0; }
+.header-brand { 
+  display: grid; 
+  grid-template-columns: auto 1fr; 
+  grid-template-areas: 
+    "logo title" 
+    "logo date"; 
+  column-gap: 12px; 
+  row-gap: 3px; 
+  align-items: center; 
+}
+.logo-img { grid-area: logo; max-height: 46px; }
+.header-title { grid-area: title; font-size: 1.25rem; font-weight: 800; color: var(--primary); margin: 0; line-height: 1; align-self: end; }
+.header-date-group { grid-area: date; display: flex; align-items: center; gap: 10px; margin: 0; align-self: start; }
 
-.nav-actions { display: flex; align-items: center; gap: 10px; }
+.nav-actions { display: flex; align-items: center; gap: 10px; justify-content: flex-end; }
 
 .date-bar {
   background: transparent; padding: 6px 20px 2px; border-bottom: none;
@@ -29,8 +39,8 @@ body { background-color: var(--bg-light); font-family: 'Segoe UI', sans-serif; c
 .date-group { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
 #txtDataAtual,
 .week-badge {
-  display: inline-flex; align-items: center; gap: 0; padding: 0; border: none;
-  border-radius: 0; background: transparent; color: #64748b; font-size: 0.88rem; font-weight: 700;
+  display: inline-flex; align-items: center; gap: 4px; padding: 0; border: none;
+  border-radius: 0; background: transparent; color: #64748b; font-size: 0.78rem; font-weight: 700;
   line-height: 1; white-space: nowrap; box-shadow: none; letter-spacing: 0.01em;
 }
 #txtDataAtual { color: #475569; }
@@ -174,10 +184,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 @media (max-width: 768px) {
   .navbar-custom { padding: 10px 14px; }
-  .header-brand { gap: 10px; }
-  .header-title { font-size: 1rem; }
-  .header-date-group { gap: 8px; margin-left: 4px; }
-  #txtDataAtual, .week-badge { font-size: 0.78rem; }
+  .header-brand { column-gap: 10px; row-gap: 2px; }
+  .header-title { font-size: 1.1rem; }
+  .header-date-group { gap: 8px; margin: 0; }
+  #txtDataAtual, .week-badge { font-size: 0.72rem; }
+  .logo-img { max-height: 40px; }
   
   /* Cabeçalho da tabela corrigido e alinhado no mobile */
   .filter-wrapper-header { flex-direction: column; align-items: flex-start; gap: 8px; margin-bottom: 12px; padding: 0 14px; }
